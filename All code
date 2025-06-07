@@ -1,0 +1,41 @@
+// script.js
+let level = 1;
+let gold = 0;
+let pets = [];
+let enemyHP = 100;
+
+function updateUI() {
+  document.getElementById('level').innerText = level;
+  document.getElementById('gold').innerText = gold;
+  document.getElementById('pets').innerText = pets.length > 0 ? pets.join(', ') : 'None';
+  document.getElementById('enemy-hp').innerText = enemyHP;
+}
+
+function addGold(amount) {
+  gold += amount;
+  updateUI();
+}
+
+function levelUp() {
+  level++;
+  updateUI();
+}
+
+function addPet(petName) {
+  pets.push(petName);
+  updateUI();
+}
+
+function castSpell() {
+  if (enemyHP > 0) {
+    let damage = Math.floor(Math.random() * 30) + 10;
+    enemyHP -= damage;
+    if (enemyHP <= 0) {
+      enemyHP = 0;
+      alert('You defeated the Fake Monster!');
+    }
+    updateUI();
+  }
+}
+
+updateUI();
